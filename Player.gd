@@ -15,7 +15,7 @@ func _physics_process(delta):
 		apply_acceleration(input.x)
 	
 	if Input.is_action_just_pressed("ui_up"):
-		velocity.y = -100
+		velocity.y = -120
 		
 	velocity = move_and_slide(velocity)
 	
@@ -23,7 +23,7 @@ func apply_gravity():
 	velocity.y += 4
 
 func apply_friction():
-	velocity.x = move_toward(velocity.x, 0, 20)
+	velocity.x = move_toward(velocity.x, 0, 10)
 
 func apply_acceleration(amount):
-	velocity.x = move_toward(velocity.x, 50 * amount, 20)
+	velocity.x = move_toward(velocity.x, 50 * amount, 10)
