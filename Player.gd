@@ -9,15 +9,16 @@ func _physics_process(delta):
 	apply_gravity()
 	var input = Vector2.ZERO
 	input.x = Input.get_action_strength("ui_right") - Input.get_action_strength("ui_left")
+	
 	if input.x == 0:
 		apply_friction()
 	else:
 		apply_acceleration(input.x)
 	
-	if Input.is_action_just_pressed("ui_up"):
+	if is_on_floor() and Input.is_action_just_pressed("ui_up"):
 		velocity.y = -120
 		
-	velocity = move_and_slide(velocity)
+	velocity = move_and_slide(velocity, Vector2.UP)
 	
 func apply_gravity():
 	velocity.y += 4
