@@ -15,9 +15,13 @@ func _physics_process(delta):
 	else:
 		apply_acceleration(input.x)
 	
-	if is_on_floor() and Input.is_action_just_pressed("ui_up"):
-		velocity.y = -120
-		
+	if is_on_floor():
+		if Input.is_action_just_pressed("ui_up"):
+			velocity.y = -130
+	else:
+		if Input.is_action_just_released("ui_up") and velocity.y < -70:
+			velocity.y = -70
+	
 	velocity = move_and_slide(velocity, Vector2.UP)
 	
 func apply_gravity():
